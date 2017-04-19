@@ -5,9 +5,14 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 
+// IMPORT PAGES
+import { SearchPageComponent } from './search-page/search-page.component';
+
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    // PAGES
+    SearchPageComponent
   ],
   imports: [
     BrowserModule,
