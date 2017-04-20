@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Types, Categories, Results, ResultIds } from '../../data/data';
+import { Types, Categories, Dates, Results, ResultIds } from '../../data/data';
 
 
 interface FilterCollectionInterface {
@@ -47,6 +47,12 @@ export class SearchPageComponent implements OnInit {
         niceName: 'category',
         type: 'select',
         options: Categories
+      },
+      {
+        name: 'Date',
+        niceName: 'date',
+        type: 'select',
+        options: Dates
       }
     ];
   }
