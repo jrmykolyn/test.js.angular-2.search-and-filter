@@ -22,15 +22,18 @@ interface FilterOptionInterface {
 })
 export class SearchPageComponent implements OnInit {
   results: Array<any> = [];
+  activeResults: Array<any> = [];
 
   filterCollections: Array<FilterCollectionInterface>
   filterSelections: any = {};
 
   constructor(
+
   ) { }
 
   ngOnInit() {
     this.results = Results;
+    this.activeResults = this.results;
 
     this.filterCollections = [
       {
@@ -42,10 +45,20 @@ export class SearchPageComponent implements OnInit {
     ];
   }
 
-  logSelections( data ) {
-    console.log( 'INSIDE `SearchPageComponet#doLog`' ); /// TEMP
-    console.log( data ); /// TEMP
-    console.log( this.filterSelections );
+  applyFilters( data ) {
+    this.activeResults = this.results
+      .filter( ( result ) => {
+        return Object
+          .keys( this.filterSelections )
+          .map( ( filter ) => {
+            if ( !result[ filter ] || !this.filterSelections[ filter ].value ) {
+              return true;
+            } else {
+              return ( result[ filter ].value === this.filterSelections[ filter ].value );
+            }
+          } )
+          .every( ( val ) => { return val === true; } );
+      } );
   }
 
 }

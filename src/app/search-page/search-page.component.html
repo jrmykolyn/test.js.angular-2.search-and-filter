@@ -4,14 +4,14 @@
       <ul>
         <li *ngFor="let filterCollection of filterCollections">
           <label [for]="filterCollection.niceName" [innerHTML]="filterCollection.name"></label>
-          <select [name]="filterCollection.name" [id]="filterCollection.niceName" [(ngModel)]="filterSelections[ filterCollection.niceName ]" (change)="logSelections( $event )">
-            <option *ngFor="let option of filterCollection.options" [value]="option.value" [innerHTML]="option.name"></option>
+          <select [name]="filterCollection.name" [id]="filterCollection.niceName" [(ngModel)]="filterSelections[ filterCollection.niceName ]" (change)="applyFilters( $event )">
+            <option *ngFor="let option of filterCollection.options" [ngValue]="option" [innerHTML]="option.name"></option>
           </select>
         </li>
       </ul>
     </form>
   </aside>
   <section>
-    <app-post-preview *ngFor="let result of results" [data]="result"></app-post-preview>
+    <app-post-preview *ngFor="let result of activeResults" [data]="result"></app-post-preview>
   </section>
 </main>
