@@ -1,16 +1,38 @@
+main {
+  width: 96%;
+  max-width: 60rem;
+  background-color: #FFF;
+  display: flex;
+  margin: 0 auto;
+  padding: 3rem 0;
+}
+
+
+aside {
+  width: 25%;
+  height: auto;
+  min-height: 10rem;
+  display: block;
+  flex: 0 0 auto;
+  border-right: solid 0.1rem #999;
+  padding-right: 1rem;
+}
+
 section {
   display: flex;
+  flex: 0 1 auto;
   flex-wrap: wrap;
+  padding-left: 1rem;
 }
 
 app-post-preview {
-  width: 22%;
+  width: 31%;
   height: auto;
   display: block;
-  margin-right: 4%;
-  margin-bottom: 4%;
+  margin-right: 3.5%;
+  margin-bottom: 3.5%;
 
-  &:nth-child( 4n ) {
+  &:nth-child( 3n ) {
     margin-right: 0;
   }
 }
