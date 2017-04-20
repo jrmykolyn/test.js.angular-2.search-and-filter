@@ -1,0 +1,16 @@
+section {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+app-post-preview {
+  width: 22%;
+  height: auto;
+  display: block;
+  margin-right: 4%;
+  margin-bottom: 4%;
+
+  &:nth-child( 4n ) {
+    margin-right: 0;
+  }
+}
