@@ -3,6 +3,7 @@
     <!-- HEADER IMAGE -->
   </header>
   <div class="post-preview__body">
+    <h3 [attr.data-category]="data.category.value" [innerHTML]="data.category.name"></h3>
     <h2>{{ data.title || 'Test 123' }}</h2>
   </div>
   <footer class="post-preview__footer">
