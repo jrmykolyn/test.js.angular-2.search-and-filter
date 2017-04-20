@@ -3,8 +3,8 @@
     <form action="#">
       <ul>
         <li *ngFor="let filterCollection of filterCollections">
-          <label for="filter_category" [innerHTML]="filterCollection.name"></label>
-          <select [name]="filterCollection.name" id="filter_category">
+          <label [for]="filterCollection.niceName" [innerHTML]="filterCollection.name"></label>
+          <select [name]="filterCollection.name" [id]="filterCollection.niceName" [(ngModel)]="filterSelections[ filterCollection.niceName ]" (change)="logSelections( $event )">
             <option *ngFor="let option of filterCollection.options" [value]="option.value" [innerHTML]="option.name"></option>
           </select>
         </li>
