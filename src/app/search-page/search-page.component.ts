@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Categories, Results, ResultIds } from '../../data/data';
+import { Types, Categories, Results, ResultIds } from '../../data/data';
 
 
 interface FilterCollectionInterface {
@@ -36,6 +36,12 @@ export class SearchPageComponent implements OnInit {
     this.activeResults = this.results;
 
     this.filterCollections = [
+      {
+        name: 'Type',
+        niceName: 'type',
+        type: 'select',
+        options: Types
+      },
       {
         name: 'Category',
         niceName: 'category',
