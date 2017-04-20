@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 
 // IMPORT PAGES
 import { SearchPageComponent } from './search-page/search-page.component';
+import { PostPreviewComponent } from './post-preview/post-preview.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     // PAGES
-    SearchPageComponent
+    SearchPageComponent,
+    PostPreviewComponent
   ],
   imports: [
     BrowserModule,

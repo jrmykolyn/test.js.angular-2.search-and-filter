@@ -1,0 +1,31 @@
+.post-preview {
+  width: 100%;
+  height: auto;
+  display: block;
+  background-color: #FFF;
+  box-shadow: 0 0.3rem 2rem -0.5rem rgba( 0, 0, 0, 0.2 );
+
+  &:nth-child( 4n ) {
+    margin-right: 0;
+  }
+
+  &:nth-child( 4n + 1 ) {
+    clear: left;
+  }
+
+  &__header {
+    width: 100%;
+    height: auto;
+    display: block;
+    background-color: #DDD;
+    padding-top: 66.666666%;
+  }
+
+  &__body {
+    padding: 1rem;
+  }
+
+  &__footer {
+    padding: 1rem;
+  }
+}
