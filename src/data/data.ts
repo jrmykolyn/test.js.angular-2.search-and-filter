@@ -6,7 +6,7 @@ const titleStrings = [
 ];
 
 const categoryObjects = [
-  { name: 'All', value: 'all' },
+  { name: 'All', value: null },
   { name: 'Politics', value: 'politics' },
   { name: 'Science and Technology', value: 'science-and-technology' },
   { name: 'Finance', value: 'finance' },
