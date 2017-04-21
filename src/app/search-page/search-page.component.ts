@@ -58,15 +58,33 @@ export class SearchPageComponent implements OnInit {
   }
 
   applyFilters( data ) {
-    this.activeResults = this.results
-      .filter( ( result ) => {
+    console.log( 'LOGGING OUT `SearchPageComponent#filterSelections`' ); /// TEMP
+    console.log( this.filterSelections ); /// TEMP
+
+    this.activeResults = this.results.filter( ( result ) => {
         return Object
           .keys( this.filterSelections )
           .map( ( filter ) => {
             if ( !result[ filter ] || !this.filterSelections[ filter ].value ) {
+
               return true;
+
             } else {
-              return ( result[ filter ].value === this.filterSelections[ filter ].value );
+
+              let matchType = this.filterSelections[ filter ].matchType;
+              let filterValue = this.filterSelections[ filter ].value;
+              let resultValue = result[ filter ].value;
+
+              // CHECK `matchType`
+              switch ( matchType ) {
+                case 'range':
+                  return ( resultValue >= filterValue[ 0 ] && resultValue <= filterValue[ 1 ] );
+
+                  // break;
+                default:
+                  return resultValue === filterValue;
+              }
+
             }
           } )
           .every( ( val ) => { return val === true; } );

@@ -1,3 +1,9 @@
+// --------------------------------------------------
+// IMPORT MODULES
+// --------------------------------------------------
+// Vendor
+import * as moment from 'moment';
+
 const titleStrings = [
   'This',
   'Is',
@@ -21,13 +27,57 @@ const categoryObjects = [
 ];
 
 const dateObjects = [
-  { name: 'All Dates', value: null },
-  { name: 'Today', value: '/// TEMP' },
-  { name: 'Tomorrow', value: '/// TEMP' },
-  { name: 'This week', value: '/// TEMP' },
-  { name: 'This weekend', value: '/// TEMP' },
-  { name: 'This later', value: '/// TEMP' }
+  { name: 'All Dates', value: null, matchType: 'range' },
+  { name: 'Today', value: getTodayRange(), matchType: 'range' },
+  { name: 'Tomorrow', value: getTomorrowRange(), matchType: 'range' },
+  { name: 'This week', value: getThisWeekRange(), matchType: 'range' },
+  { name: 'This weekend', value: getThisWeekendRange(), matchType: 'range' },
+  { name: 'Later', value: getLaterRange(), matchType: 'range' }
 ];
+
+function getTodayRange(): Array<number> {
+  return [
+    moment().startOf( 'day' ).unix(),
+    moment().endOf( 'day' ).unix()
+  ];
+}
+
+function getTomorrowRange(): Array<number> {
+  const today = moment().day();
+  const tomorrow = moment().day( today + 1 );
+
+  return [
+    tomorrow.startOf( 'day' ).unix(),
+    tomorrow.endOf( 'day' ).unix()
+  ];
+}
+
+function getThisWeekRange(): Array<number> {
+  return [
+    moment().startOf( 'week' ).unix(),
+    moment().endOf( 'week' ).unix()
+  ];
+}
+
+function getThisWeekendRange(): Array<number> {
+  const sat = moment().day( 6 );
+  const sun = moment().day( 7 );
+
+  return [
+    sat.startOf( 'day' ).unix(),
+    sun.endOf( 'day' ).unix()
+  ];
+}
+
+function getLaterRange(): Array<number> {
+  var nextMonday = moment().day( 8 );
+  var muchLater = moment().year( 9999 );
+
+  return [
+    nextMonday.startOf( 'day' ).unix(),
+    muchLater.endOf( 'year' ).unix()
+  ];
+}
 
 interface ResultInterface {
   title: string,
@@ -46,7 +96,7 @@ class Result implements ResultInterface {
     this.title = ( titleStrings.reduce( ( string1: string, string2: string ) => { return `${string1} ${string2}`; } ) ); /// TEMP
     this.type = typeObjects[ Math.floor( Math.random() * typeObjects.length ) ];
     this.category = categoryObjects[ Math.floor( Math.random() * categoryObjects.length ) ];
-    this.date = new Date().getTime();
+    this.date = { value: new Date().getTime() };
   }
 }
 
@@ -56,6 +106,9 @@ for ( let i = 0, x = 30; i < x; i++ ) {
     resultObjects.push( new Result() ); /// TEMP
 }
 
+// --------------------------------------------------
+// PUBLIC API
+// --------------------------------------------------
 export const Types = typeObjects;
 
 export const Categories = categoryObjects;
